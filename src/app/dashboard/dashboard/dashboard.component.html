@@ -1,1 +1,13 @@
-<p>dashboard works!</p>
+@for (todoList of todoLists; track $index) {
+    <div class="todo-list">
+        <div class="todo-list-header">
+            <h2>{{ todoList.title }}</h2>
+            <button>Delete</button>
+        </div>
+        <div class="todo-list-body">
+        </div>
+        <div class="todo-list-footer">
+            <button>Add</button>
+        </div>
+    </div>
+}
