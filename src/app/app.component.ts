@@ -36,5 +36,7 @@ export class AppComponent {
         )
     );
 
-    async logout() {}
+    async logout() {
+        await this.#userStore.logout();
+    }
 }

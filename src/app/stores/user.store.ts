@@ -4,7 +4,6 @@ import {
     patchState,
     signalStore,
     withComputed,
-    withHooks,
     withMethods,
     withState,
 } from '@ngrx/signals';
@@ -22,7 +21,9 @@ const initialState: UserState = {
 
 export const UserStore = signalStore(
     { providedIn: 'root' },
+
     withState(initialState),
+
     withComputed(({ user }) => ({
         isAuthenticated: computed(() => !!user()),
         id: computed(() => user()?.id),
@@ -30,11 +31,16 @@ export const UserStore = signalStore(
         name: computed(() => user()?.name),
         profilePictureId: computed(() => user()?.profilePictureId),
     })),
+
     withMethods((store, userService = inject(UserService)) => ({
         loadUser: async () => {
             patchState(store, { isLoading: true });
             const user = await userService.getUser();
             patchState(store, { isLoading: false, user });
+        },
+
+        logout: async () => {
+            userService.logout();
         },
     }))
 );
