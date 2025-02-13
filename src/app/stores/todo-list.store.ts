@@ -6,7 +6,6 @@ import {
     withMethods,
     withState,
 } from '@ngrx/signals';
-import { TodoList } from '../dashboard/dashboard.component';
 import {
     addEntities,
     addEntity,
@@ -15,6 +14,7 @@ import {
 } from '@ngrx/signals/entities';
 import { inject } from '@angular/core';
 import { TodoListService } from '../services/todo-list.service';
+import { TodoList } from '../../models/TodoList';
 
 type TodoListState = {
     isLoading: boolean;

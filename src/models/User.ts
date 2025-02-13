@@ -1,5 +1,5 @@
 export type User = {
-    id: string;
+    id: number;
     discordId: string;
     name: string;
     profilePictureId: string;

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, lastValueFrom, map, of, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { TodoList } from '../dashboard/dashboard.component';
+import { TodoList } from '../../models/TodoList';
 
 @Injectable({
     providedIn: 'root',

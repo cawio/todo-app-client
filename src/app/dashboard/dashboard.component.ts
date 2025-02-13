@@ -4,32 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { lastValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
-
-export type TodoList = {
-    id: number;
-    userId: number;
-    title: string;
-    createdAt: string;
-    updatedAt: string;
-    tasks: Task[];
-};
-
-export type Task = {
-    id: number;
-    title: string;
-    description: string;
-    dueOn: string;
-    priority: number;
-    completed: boolean;
-    createdAt: string;
-    updatedAt: string;
-    tags: Tag[];
-};
-
-export type Tag = {
-    id: number;
-    name: string;
-};
+import { TodoListStore } from '../stores/todo-list.store';
 
 @Component({
     selector: 'app-dashboard',
@@ -38,15 +13,7 @@ export type Tag = {
     styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
-    readonly #http = inject(HttpClient);
+    readonly #todoListStore = inject(TodoListStore);
 
-    todoLists: TodoList[] = [];
-
-    async ngOnInit() {
-        this.todoLists = await lastValueFrom(
-            this.#http.get<TodoList[]>(environment.apiUrl + '/todo-lists', {
-                withCredentials: true,
-            })
-        );
-    }
+    todoLists = this.#todoListStore.entities;
 }

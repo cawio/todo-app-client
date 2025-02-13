@@ -1,0 +1,72 @@
+<form [formGroup]="todoListForm" class="form-grid">
+    <mat-form-field class="grid-item">
+        <mat-label>List Title</mat-label>
+        <input matInput placeholder="Title" formControlName="title" />
+    </mat-form-field>
+</form>
+<form [formGroup]="taskForm" class="form-grid">
+    <mat-form-field class="grid-item">
+        <mat-label>Task Title</mat-label>
+        <input matInput placeholder="Task" formControlName="title" />
+    </mat-form-field>
+    <mat-form-field class="grid-item">
+        <mat-label>Task Description</mat-label>
+        <input
+            matInput
+            placeholder="Description"
+            formControlName="description"
+        />
+    </mat-form-field>
+    <mat-form-field class="grid-item">
+        <mat-label>Task Due Date</mat-label>
+        <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Due Date"
+            formControlName="dueOn"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="grid-item">
+        <mat-label>Task Priority</mat-label>
+        <mat-select formControlName="priority">
+            <mat-option [value]="0">Low</mat-option>
+            <mat-option [value]="1">Medium</mat-option>
+            <mat-option [value]="2">High</mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>
+<button mat-fab extended (click)="addTask()">
+    <mat-icon>add</mat-icon>
+    Add Task
+</button>
+<mat-table [dataSource]="tasks()">
+    <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Task </mat-header-cell>
+        <mat-cell *matCellDef="let task"> {{ task.title }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let task"> {{ task.description }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dueOn">
+        <mat-header-cell *matHeaderCellDef> Due Date </mat-header-cell>
+        <mat-cell *matCellDef="let task"> {{ task.dueOn | date }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="priority">
+        <mat-header-cell *matHeaderCellDef> Priority </mat-header-cell>
+        <mat-cell *matCellDef="let task">
+            {{ task.priority | priority }}
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+<button mat-raised-button color="primary" (click)="onSubmit()">
+    Create Todo List
+</button>

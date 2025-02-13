@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './src/app/auth/login/login.component';
-import { DashboardComponent } from './src/app/dashboard/dashboard.component';
-import { authGuard } from './src/app/auth/auth.guard';
+import { LoginComponent } from './auth/login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { authGuard } from './auth/auth.guard';
+import { CreateTodoListComponent } from './create-todo-list/create-todo-list.component';
 
 export const routes: Routes = [
     {
@@ -24,6 +25,12 @@ export const routes: Routes = [
                 component: LoginComponent,
             },
         ],
+    },
+    {
+        title: 'Create Todo List',
+        path: 'create',
+        component: CreateTodoListComponent,
+        canActivate: [authGuard],
     },
     {
         // ! This route must be the last one

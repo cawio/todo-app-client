@@ -1,11 +1,12 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from '../../app.routes';
+import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { cookieInterceptor } from './auth/cookie.interceptor';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -15,7 +16,8 @@ export const appConfig: ApplicationConfig = {
         provideAnimationsAsync(),
         {
             provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-            useValue: { appearance: 'fill' },
+            useValue: { appearance: 'outline', hideRequiredMarker: true },
         },
+        provideNativeDateAdapter(),
     ],
 };

@@ -1,4 +1,4 @@
-@for (todoList of todoLists; track $index) {
+@for (todoList of todoLists(); track $index) {
     <div class="todo-list">
         <div class="todo-list-header">
             <h2>{{ todoList.title }}</h2>
