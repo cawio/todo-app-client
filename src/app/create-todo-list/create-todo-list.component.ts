@@ -74,7 +74,7 @@ export class CreateTodoListComponent {
             id: 0,
             title: title?.trim() || '',
             description: description?.trim() || undefined,
-            dueOn: dueOn || '',
+            dueOn: dueOn || undefined,
             priority: priority || 0,
             completed: false,
             createdAt: now,
