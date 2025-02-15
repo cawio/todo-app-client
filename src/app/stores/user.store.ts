@@ -29,7 +29,9 @@ export const UserStore = signalStore(
         id: computed(() => user()?.id),
         discordId: computed(() => user()?.discordId),
         name: computed(() => user()?.name),
-        profilePictureId: computed(() => user()?.profilePictureId),
+        createdAt: computed(() => user()?.createdAt),
+        discriminator: computed(() => user()?.discriminator),
+        avatar: computed(() => user()?.avatar),
     })),
 
     withMethods((store, userService = inject(UserService)) => ({

@@ -1,13 +1,9 @@
 @for (todoList of todoLists(); track $index) {
-    <div class="todo-list">
-        <div class="todo-list-header">
-            <h2>{{ todoList.title }}</h2>
-            <button>Delete</button>
-        </div>
-        <div class="todo-list-body">
-        </div>
-        <div class="todo-list-footer">
-            <button>Add</button>
-        </div>
-    </div>
+<app-todo-list-card [todoList]="todoList"></app-todo-list-card>
+} @empty {
+<p>No todo lists found 🥹</p>
+<button mat-fab extended [routerLink]="['/create']">
+    <mat-icon>add</mat-icon>
+    Create Todo List
+</button>
 }
